@@ -1,4 +1,4 @@
-package com.mygdx.game.Sceenes;
+package com.mygdx.game.sceenes;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -29,7 +29,7 @@ public class Hud {
         worldTimer = 300;
         timeCount = 0;
         score = 0;
-        viewport = new FitViewport(Mario.v_width,Mario.v_high, new OrthographicCamera());
+        viewport = new FitViewport(Mario.v_width, Mario.v_high, new OrthographicCamera());
         stage = new Stage(viewport, sb);
         Table table = new Table();
         table.top();
