@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Mario;
+import com.mygdx.game.Sprites.Enemy;
 import com.mygdx.game.Sprites.Sugar;
 import com.mygdx.game.sceenes.Hud;
 import com.mygdx.game.Sprites.CMario;
@@ -36,9 +37,10 @@ public class PlayScreen implements Screen {
     //zmienne Box2D
     private World world;
     private Box2DDebugRenderer b2dr;
+    private B2WorldCreator creator;
     //zmienna dla klasy Cmario
     private CMario player;
-    private Sugar sugar;
+
 
 
     public PlayScreen(Mario game) {
@@ -55,9 +57,9 @@ public class PlayScreen implements Screen {
         player = new CMario(this);
         b2dr = new Box2DDebugRenderer();
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Mario.PPM);
-        new B2WorldCreator(this);
+        creator = new B2WorldCreator(this);
         world.setContactListener(new WorldContactListener());
-        sugar = new Sugar(this,.32f,.32f);
+
     }
     public TextureAtlas getAtlas() {
         return atlas;
@@ -75,7 +77,8 @@ public class PlayScreen implements Screen {
         handleInput(dt);
         world.step(1/60f,6,2);
         player.update(dt);
-       sugar.update(dt);
+        for (Enemy enemy: creator.getSugars())
+            enemy.update(dt);
         hud.upadte(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         gamecam.update();
@@ -108,7 +111,8 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
-        sugar.draw(game.batch);
+        for (Enemy enemy: creator.getSugars())
+            enemy.draw(game.batch);
         game.batch.end();
 
       game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
