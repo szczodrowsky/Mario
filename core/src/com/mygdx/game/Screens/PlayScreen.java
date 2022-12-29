@@ -6,22 +6,16 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Mario;
+import com.mygdx.game.Sprites.Sugar;
 import com.mygdx.game.sceenes.Hud;
 import com.mygdx.game.Sprites.CMario;
 import com.mygdx.game.tools.B2WorldCreator;
@@ -44,6 +38,7 @@ public class PlayScreen implements Screen {
     private Box2DDebugRenderer b2dr;
     //zmienna dla klasy Cmario
     private CMario player;
+    private Sugar sugar;
 
 
     public PlayScreen(Mario game) {
@@ -57,11 +52,12 @@ public class PlayScreen implements Screen {
         map = maploader.load("1-1.tmx");
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
         world = new World(new Vector2(0, -10), true);
-        player = new CMario(world,this);
+        player = new CMario(this);
         b2dr = new Box2DDebugRenderer();
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Mario.PPM);
-        new B2WorldCreator(world,map);
+        new B2WorldCreator(this);
         world.setContactListener(new WorldContactListener());
+        sugar = new Sugar(this,.32f,.32f);
     }
     public TextureAtlas getAtlas() {
         return atlas;
@@ -79,11 +75,18 @@ public class PlayScreen implements Screen {
         handleInput(dt);
         world.step(1/60f,6,2);
         player.update(dt);
+       sugar.update(dt);
         hud.upadte(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         gamecam.update();
         renderer.setView(gamecam );
 
+    }
+    public TiledMap getMap(){
+        return map;
+    }
+    public World getWorld(){
+        return world;
     }
 
     @Override
@@ -105,6 +108,7 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+        sugar.draw(game.batch);
         game.batch.end();
 
       game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

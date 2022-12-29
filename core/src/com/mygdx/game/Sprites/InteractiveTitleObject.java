@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Mario;
+import com.mygdx.game.Screens.PlayScreen;
 
 public abstract class InteractiveTitleObject {
     protected World world;
@@ -22,9 +23,9 @@ public abstract class InteractiveTitleObject {
     protected Body body;
     protected Fixture fixture;
 
-    public InteractiveTitleObject(World world, TiledMap map, Rectangle bounds) {
-        this.world = world;
-        this.map = map;
+    public InteractiveTitleObject(PlayScreen screen, Rectangle bounds) {
+        this.world = screen.getWorld();
+        this.map = screen.getMap();
         this.bounds = bounds;
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();
@@ -46,7 +47,7 @@ public abstract class InteractiveTitleObject {
         filter.categoryBits = filterBit;
         fixture.setFilterData(filter);
     }
-    //musze dodać warstwe graphic ze jak beda sie usuwały bloki to znikaja do ogarniecia przy robieniu mapy
+    //to służy do usuwania Brick'ów
     public TiledMapTileLayer.Cell getCell(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
         return layer.getCell((int)(body.getPosition().x*Mario.PPM/16),(int)(body.getPosition().y*Mario.PPM/16));

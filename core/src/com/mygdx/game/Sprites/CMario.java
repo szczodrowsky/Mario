@@ -26,9 +26,9 @@ public class CMario extends Sprite {
     private float stateTimer;
     private boolean runningRight;
 
-    public CMario(World world, PlayScreen screen){
+    public CMario(PlayScreen screen){
         super(screen.getAtlas().findRegion("little_mario") );
-        this.world = world;
+        this.world = screen.getWorld();
         currentState = State.STANDING;
         previousState = State.STANDING;
         stateTimer = 0;
@@ -104,7 +104,12 @@ public class CMario extends Sprite {
         CircleShape shape = new CircleShape();
         shape.setRadius(6/Mario.PPM);
         fdef.filter.categoryBits = Mario.MARIO_BIT;
-        fdef.filter.maskBits = Mario.DEFAULT_BIT | Mario.BRICK_BIT | Mario.COIN_BIT;
+        fdef.filter.maskBits = Mario.GROUND_BIT |
+                Mario.BRICK_BIT |
+                Mario.COIN_BIT|
+                Mario.ENEMY_BIT|
+        Mario.OBJECT_BIT|
+        Mario.ENEMY_HEAD_BIT;
 
 
         fdef.shape = shape;
