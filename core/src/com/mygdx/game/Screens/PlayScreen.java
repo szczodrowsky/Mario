@@ -25,6 +25,7 @@ import com.mygdx.game.Mario;
 import com.mygdx.game.sceenes.Hud;
 import com.mygdx.game.Sprites.CMario;
 import com.mygdx.game.tools.B2WorldCreator;
+import com.mygdx.game.tools.WorldContactListener;
 
 public class PlayScreen implements Screen {
     //gra
@@ -60,6 +61,7 @@ public class PlayScreen implements Screen {
         b2dr = new Box2DDebugRenderer();
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Mario.PPM);
         new B2WorldCreator(world,map);
+        world.setContactListener(new WorldContactListener());
     }
     public TextureAtlas getAtlas() {
         return atlas;
@@ -77,6 +79,7 @@ public class PlayScreen implements Screen {
         handleInput(dt);
         world.step(1/60f,6,2);
         player.update(dt);
+        hud.upadte(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         gamecam.update();
         renderer.setView(gamecam );
