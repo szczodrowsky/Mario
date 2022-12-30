@@ -12,15 +12,25 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Mario;
 import com.mygdx.game.Sprites.Enemy;
-import com.mygdx.game.Sprites.Sugar;
+//import com.mygdx.game.Sprites.Items.Apple;
+
+//import com.mygdx.game.Sprites.Items.Item;
+//import com.mygdx.game.Sprites.Items.ItemDef;
+import com.mygdx.game.Sprites.Items.Apple;
+import com.mygdx.game.Sprites.Items.Item;
+import com.mygdx.game.Sprites.Items.ItemDef;
 import com.mygdx.game.sceenes.Hud;
 import com.mygdx.game.Sprites.CMario;
 import com.mygdx.game.tools.B2WorldCreator;
 import com.mygdx.game.tools.WorldContactListener;
+
+import java.util.PriorityQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class PlayScreen implements Screen {
     //gra
@@ -38,13 +48,14 @@ public class PlayScreen implements Screen {
     private World world;
     private Box2DDebugRenderer b2dr;
     private B2WorldCreator creator;
-    //zmienna dla klasy Cmario
+    //sprites
     private CMario player;
-
+     private Array<Item> items;
+     private LinkedBlockingQueue<ItemDef> itemToSpawn;
 
 
     public PlayScreen(Mario game) {
-        atlas = new TextureAtlas("Mario_and_Enemies.pack");
+        atlas = new TextureAtlas("testowy.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(Mario.v_width / Mario.PPM, Mario.v_high / Mario.PPM, gamecam);
@@ -59,8 +70,23 @@ public class PlayScreen implements Screen {
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Mario.PPM);
         creator = new B2WorldCreator(this);
         world.setContactListener(new WorldContactListener());
+        items = new Array<Item>();
+        itemToSpawn = new LinkedBlockingQueue<ItemDef>();
+
 
     }
+    public void spawnItem(ItemDef idef){
+        itemToSpawn.add(idef);
+    }
+    public void handleSpawningItems(){
+        if(!itemToSpawn.isEmpty()){
+            ItemDef idef = itemToSpawn.poll();
+            if(idef.type == Apple.class){
+                items.add(new Apple(this, idef.position.x, idef.position.y));
+            }
+        }
+    }
+
     public TextureAtlas getAtlas() {
         return atlas;
     }
@@ -75,10 +101,14 @@ public class PlayScreen implements Screen {
 
     public void update (float dt){
         handleInput(dt);
+        handleSpawningItems();
         world.step(1/60f,6,2);
         player.update(dt);
         for (Enemy enemy: creator.getSugars())
             enemy.update(dt);
+        for(Item item: items)
+            item.update(dt);
+
         hud.upadte(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         gamecam.update();
@@ -113,6 +143,8 @@ public class PlayScreen implements Screen {
         player.draw(game.batch);
         for (Enemy enemy: creator.getSugars())
             enemy.draw(game.batch);
+        for(Item item: items)
+            item.draw(game.batch);
         game.batch.end();
 
       game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

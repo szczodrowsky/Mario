@@ -109,7 +109,8 @@ public class CMario extends Sprite {
                 Mario.COIN_BIT|
                 Mario.ENEMY_BIT|
                 Mario.OBJECT_BIT|
-                Mario.ENEMY_HEAD_BIT;
+                Mario.ENEMY_HEAD_BIT|
+                Mario.ITEM_BIT;
 
 
         fdef.shape = shape;

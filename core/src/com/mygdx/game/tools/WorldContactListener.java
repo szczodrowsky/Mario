@@ -7,8 +7,10 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.mygdx.game.Mario;
+import com.mygdx.game.Sprites.CMario;
 import com.mygdx.game.Sprites.Enemy;
 import com.mygdx.game.Sprites.InteractiveTitleObject;
+import com.mygdx.game.Sprites.Items.Item;
 
 public class WorldContactListener implements ContactListener {
     @Override
@@ -43,6 +45,18 @@ public class WorldContactListener implements ContactListener {
            case Mario.ENEMY_BIT | Mario.ENEMY_BIT:
                ((Enemy)fixA.getUserData()).reverseVelocity(true, false);
                ((Enemy)fixB.getUserData()).reverseVelocity(true, false);
+               break;
+          /* case Mario.ITEM_BIT | Mario.OBJECT_BIT:
+               if(fixA.getFilterData().categoryBits == Mario.ITEM_BIT)
+                   ((Item)fixA.getUserData()).reverseVelocity(true, false);
+               else
+                   ((Item)fixB.getUserData()).reverseVelocity(true, false);
+               break; */
+           case Mario.ITEM_BIT | Mario.MARIO_BIT:
+               if(fixA.getFilterData().categoryBits == Mario.ITEM_BIT)
+                   ((Item)fixA.getUserData()).use((CMario) fixB.getUserData());
+               else
+                   ((Item)fixB.getUserData()).use((CMario) fixA.getUserData());
                break;
        }
     }
