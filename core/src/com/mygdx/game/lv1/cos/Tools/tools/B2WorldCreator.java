@@ -1,4 +1,4 @@
-package com.mygdx.game.tools;
+package com.mygdx.game.lv1.cos.Tools.tools;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -11,10 +11,11 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Mario;
-import com.mygdx.game.Screens.PlayScreen;
-import com.mygdx.game.Sprites.Brick;
-import com.mygdx.game.Sprites.Coin;
-import com.mygdx.game.Sprites.Sugar;
+import com.mygdx.game.lv1.cos.Tools.Screens.PlayScreen;
+import com.mygdx.game.lv1.cos.Tools.Sprites.Brick;
+import com.mygdx.game.lv1.cos.Tools.Sprites.Coin;
+import com.mygdx.game.lv1.cos.Tools.Sprites.Sugar;
+
 
 
 public class B2WorldCreator {
@@ -55,14 +56,15 @@ public class B2WorldCreator {
         }
         // to beda monety/melko
         for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            new Coin(screen, rect);
+
+            new Coin(screen, object);
         }
         // to sa boxy
         for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            new Brick(screen, rect);
+
+            new Brick(screen, object);
         }
+        //donaty
         sugars = new Array<Sugar>();
         for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();

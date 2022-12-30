@@ -1,7 +1,8 @@
-package com.mygdx.game.Sprites;
+package com.mygdx.game.lv1.cos.Tools.Sprites;
 
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapImageLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
@@ -13,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Mario;
-import com.mygdx.game.Screens.PlayScreen;
+import com.mygdx.game.lv1.cos.Tools.Screens.PlayScreen;
 
 public abstract class InteractiveTitleObject {
     protected World world;
@@ -23,12 +24,14 @@ public abstract class InteractiveTitleObject {
     protected Body body;
     protected Fixture fixture;
     protected PlayScreen screen;
+    protected MapObject object;
 
-    public InteractiveTitleObject(PlayScreen screen, Rectangle bounds) {
+    public InteractiveTitleObject(PlayScreen screen, MapObject object) {
+        this.object = object;
         this.screen = screen;
         this.world = screen.getWorld();
         this.map = screen.getMap();
-        this.bounds = bounds;
+        this.bounds = ((RectangleMapObject)object ).getRectangle();
         BodyDef bdef = new BodyDef();
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
@@ -42,7 +45,7 @@ public abstract class InteractiveTitleObject {
         fdef.shape = shape;
         fixture = body.createFixture(fdef);
     }
-    public abstract void onHeadHit();
+    public abstract void onHeadHit(CMario mario);
 
     public void setCategoryFilter(short filterBit){
         Filter filter = new Filter();
