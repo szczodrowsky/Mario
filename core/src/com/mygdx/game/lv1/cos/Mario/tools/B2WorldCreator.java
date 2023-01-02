@@ -1,4 +1,4 @@
-package com.mygdx.game.lv1.cos.Tools.tools;
+package com.mygdx.game.lv1.cos.Mario.tools;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -11,10 +11,10 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Mario;
-import com.mygdx.game.lv1.cos.Tools.Screens.PlayScreen;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Brick;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Coin;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Sugar;
+import com.mygdx.game.lv1.cos.Mario.Screens.PlayScreen;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Brick;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Coin;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Sugar;
 
 
 

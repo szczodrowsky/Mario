@@ -1,4 +1,4 @@
-package com.mygdx.game.lv1.cos.Tools.sceenes;
+package com.mygdx.game.lv1.cos.Mario.sceenes;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;

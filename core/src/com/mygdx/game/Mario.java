@@ -2,7 +2,8 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.lv1.cos.Tools.Screens.PlayScreen;
+import com.mygdx.game.lv1.cos.Mario.Screens.Menu;
+import com.mygdx.game.lv1.cos.Mario.Screens.PlayScreen;
 
 public class Mario extends Game {
 	public final static int v_width = 400;
@@ -29,7 +30,8 @@ public class Mario extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		setScreen(new PlayScreen(this));
+		setScreen(new Menu(this));
+		//setScreen(new PlayScreen(this));
 	}
 
 	@Override

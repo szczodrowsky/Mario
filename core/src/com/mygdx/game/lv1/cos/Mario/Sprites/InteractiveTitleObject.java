@@ -1,4 +1,4 @@
-package com.mygdx.game.lv1.cos.Tools.Sprites;
+package com.mygdx.game.lv1.cos.Mario.Sprites;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Mario;
-import com.mygdx.game.lv1.cos.Tools.Screens.PlayScreen;
+import com.mygdx.game.lv1.cos.Mario.Screens.PlayScreen;
 
 public abstract class InteractiveTitleObject {
     protected World world;

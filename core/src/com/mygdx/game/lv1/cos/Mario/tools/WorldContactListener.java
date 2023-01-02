@@ -1,4 +1,4 @@
-package com.mygdx.game.lv1.cos.Tools.tools;
+package com.mygdx.game.lv1.cos.Mario.tools;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -6,10 +6,10 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.mygdx.game.Mario;
-import com.mygdx.game.lv1.cos.Tools.Sprites.CMario;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Enemy;
-import com.mygdx.game.lv1.cos.Tools.Sprites.InteractiveTitleObject;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Items.Item;
+import com.mygdx.game.lv1.cos.Mario.Sprites.CMario;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Enemy;
+import com.mygdx.game.lv1.cos.Mario.Sprites.InteractiveTitleObject;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Items.Item;
 
 public class WorldContactListener implements ContactListener {
     @Override

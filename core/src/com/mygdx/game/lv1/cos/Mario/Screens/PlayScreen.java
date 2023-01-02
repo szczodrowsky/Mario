@@ -1,4 +1,4 @@
-package com.mygdx.game.lv1.cos.Tools.Screens;
+package com.mygdx.game.lv1.cos.Mario.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -16,18 +16,18 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Mario;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Enemy;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Enemy;
 //import com.mygdx.game.Sprites.Items.Apple;
 
 //import com.mygdx.game.Sprites.Items.Item;
 //import com.mygdx.game.Sprites.Items.ItemDef;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Items.Apple;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Items.Item;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Items.ItemDef;
-import com.mygdx.game.lv1.cos.Tools.sceenes.Hud;
-import com.mygdx.game.lv1.cos.Tools.Sprites.CMario;
-import com.mygdx.game.lv1.cos.Tools.tools.B2WorldCreator;
-import com.mygdx.game.lv1.cos.Tools.tools.WorldContactListener;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Items.Apple;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Items.Item;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Items.ItemDef;
+import com.mygdx.game.lv1.cos.Mario.sceenes.Hud;
+import com.mygdx.game.lv1.cos.Mario.Sprites.CMario;
+import com.mygdx.game.lv1.cos.Mario.tools.B2WorldCreator;
+import com.mygdx.game.lv1.cos.Mario.tools.WorldContactListener;
 
 import java.util.concurrent.LinkedBlockingQueue;
 

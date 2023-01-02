@@ -1,4 +1,4 @@
-package com.mygdx.game.lv1.cos.Tools.Sprites;
+package com.mygdx.game.lv1.cos.Mario.Sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
@@ -7,11 +7,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Mario;
 //import com.mygdx.game.Sprites.Items.Apple;
 //import com.mygdx.game.Sprites.Items.ItemDef;
-import com.mygdx.game.lv1.cos.Tools.Screens.PlayScreen;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Items.Apple;
-import com.mygdx.game.lv1.cos.Tools.Sprites.Items.ItemDef;
+import com.mygdx.game.lv1.cos.Mario.Screens.PlayScreen;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Items.Apple;
+import com.mygdx.game.lv1.cos.Mario.Sprites.Items.ItemDef;
 
-import com.mygdx.game.lv1.cos.Tools.sceenes.Hud;
+import com.mygdx.game.lv1.cos.Mario.sceenes.Hud;
 
 public class Coin extends InteractiveTitleObject{
     public static TiledMapTileSet set;
