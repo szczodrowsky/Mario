@@ -93,19 +93,19 @@ public class CMario extends Sprite {
         }
         stateTimer = currentState ==previousState ? stateTimer + dt : 0;
         previousState = currentState;
-                return region;
+        return region;
     }
     public State getState(){
         if(marioIsDead)
             return State.DEAD;
         else if(b2body.getLinearVelocity().y>0 || (b2body.getLinearVelocity().y<0 && previousState == State.JUMPING))
             return State.JUMPING;
-       else if(b2body.getLinearVelocity().y<0)
+        else if(b2body.getLinearVelocity().y<0)
             return State.FALLING;
-       else if(b2body.getLinearVelocity().x !=0)
-           return State.RUNNING;
-       else
-           return State.STANDING;
+        else if(b2body.getLinearVelocity().x !=0)
+            return State.RUNNING;
+        else
+            return State.STANDING;
     }
 
     public void defineMario(){
@@ -141,7 +141,7 @@ public class CMario extends Sprite {
 
     }
     public void hit(){
-       marioIsDead = true;
+        marioIsDead = true;
         Filter filter = new Filter();
         filter.maskBits = Mario.NOTHING_BIT;
         for(Fixture fixture: b2body.getFixtureList())

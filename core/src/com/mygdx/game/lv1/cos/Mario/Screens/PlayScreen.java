@@ -11,13 +11,15 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Mario;
+import com.mygdx.game.lv1.cos.Mario.Sprites.EndGame;
 import com.mygdx.game.lv1.cos.Mario.Sprites.Enemy;
-//import com.mygdx.game.Sprites.Items.Apple;
+
 
 //import com.mygdx.game.Sprites.Items.Item;
 //import com.mygdx.game.Sprites.Items.ItemDef;
@@ -28,6 +30,7 @@ import com.mygdx.game.lv1.cos.Mario.sceenes.Hud;
 import com.mygdx.game.lv1.cos.Mario.Sprites.CMario;
 import com.mygdx.game.lv1.cos.Mario.tools.B2WorldCreator;
 import com.mygdx.game.lv1.cos.Mario.tools.WorldContactListener;
+
 
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -51,6 +54,8 @@ public class PlayScreen implements Screen {
     private CMario player;
      private Array<Item> items;
      private LinkedBlockingQueue<ItemDef> itemToSpawn;
+
+
 
 
     public PlayScreen(Mario game) {
@@ -154,6 +159,7 @@ public class PlayScreen implements Screen {
       game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
       hud.stage.draw();
 
+
     }
 
     @Override
@@ -183,6 +189,7 @@ public class PlayScreen implements Screen {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
+
 
     }
 }

@@ -21,6 +21,7 @@ public class Mario extends Game {
 	public static  final short ENEMY_HEAD_BIT = 128;
 	public static final short  ITEM_BIT = 256;
 	public static  final short MARIO_HEAD_BIT = 512;
+	public static final short END_GAME_BIT = 1024;
 
 
 
@@ -30,8 +31,8 @@ public class Mario extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		setScreen(new Menu(this));
-		//setScreen(new PlayScreen(this));
+		//setScreen(new Menu(this));
+		setScreen(new PlayScreen(this));
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class Coin extends InteractiveTitleObject{
     public void onHeadHit(CMario mario) {
         Gdx.app.log("Coin","Collision");
         if(object.getProperties().containsKey("apple")){
-        screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x,body.getPosition().y+16/Mario.PPM), Apple.class));
+            screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x,body.getPosition().y+16/Mario.PPM), Apple.class));
         }
         getCell().setTile(set.getTile(BLANK_COIN));
         Hud.addScore(150);

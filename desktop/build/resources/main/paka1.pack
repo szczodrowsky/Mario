@@ -1,0 +1,40 @@
+
+paka1.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+big_mario
+  rotate: false
+  xy: 1, 19
+  size: 336, 32
+  orig: 336, 32
+  offset: 0, 0
+  index: -1
+little_mario
+  rotate: false
+  xy: 1, 1
+  size: 224, 16
+  orig: 224, 16
+  offset: 0, 0
+  index: -1
+goomba
+  rotate: false
+  xy: 339, 35
+  size: 48, 16
+  orig: 48, 16
+  offset: 0, 0
+  index: -1
+donat
+  rotate: false
+  xy: 227, 1
+  size: 23, 16
+  orig: 23, 16
+  offset: 0, 0
+  index: -1
+apple
+  rotate: false
+  xy: 389, 35
+  size: 14, 16
+  orig: 14, 16
+  offset: 0, 0
+  index: -1

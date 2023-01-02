@@ -19,51 +19,50 @@ public class WorldContactListener implements ContactListener {
         int cDef = fixA.getFilterData().categoryBits |fixB.getFilterData().categoryBits;
 
 
-       switch (cDef){
-           case Mario.MARIO_HEAD_BIT| Mario.BRICK_BIT:
-           case Mario.MARIO_HEAD_BIT | Mario.COIN_BIT:
-               if(fixA.getFilterData().categoryBits == Mario.MARIO_HEAD_BIT)
-                   ((InteractiveTitleObject) fixB.getUserData()).onHeadHit((CMario) fixA.getUserData());
-               else
-                   ((InteractiveTitleObject) fixA.getUserData()).onHeadHit((CMario) fixA.getUserData());
-                        break;
-               case Mario.ENEMY_HEAD_BIT | Mario.MARIO_BIT:
-               if(fixA.getFilterData().categoryBits == Mario.ENEMY_HEAD_BIT)
-                   ((Enemy)fixA.getUserData()).hitOnHead();
-               else
-                   ((Enemy)fixB.getUserData()).hitOnHead();
-               break;
-           case Mario.ENEMY_BIT | Mario.OBJECT_BIT:
-               if(fixA.getFilterData().categoryBits == Mario.ENEMY_BIT)
-                   ((Enemy)fixA.getUserData()).reverseVelocity(true, false);
-               else
-                   ((Enemy)fixB.getUserData()).reverseVelocity(true, false);
-               break;
+        switch (cDef){
+            case Mario.MARIO_HEAD_BIT| Mario.BRICK_BIT:
+            case Mario.MARIO_HEAD_BIT | Mario.COIN_BIT:
+                if(fixA.getFilterData().categoryBits == Mario.MARIO_HEAD_BIT)
+                    ((InteractiveTitleObject) fixB.getUserData()).onHeadHit((CMario) fixA.getUserData());
+                else
+                    ((InteractiveTitleObject) fixA.getUserData()).onHeadHit((CMario) fixA.getUserData());
+                break;
+            case Mario.ENEMY_HEAD_BIT | Mario.MARIO_BIT:
+                if(fixA.getFilterData().categoryBits == Mario.ENEMY_HEAD_BIT)
+                    ((Enemy)fixA.getUserData()).hitOnHead();
+                else
+                    ((Enemy)fixB.getUserData()).hitOnHead();
+                break;
+            case Mario.ENEMY_BIT | Mario.OBJECT_BIT:
+                if(fixA.getFilterData().categoryBits == Mario.ENEMY_BIT)
+                    ((Enemy)fixA.getUserData()).reverseVelocity(true, false);
+                else
+                    ((Enemy)fixB.getUserData()).reverseVelocity(true, false);
+                break;
           /*        case Mario.MARIO_BIT | Mario.ENEMY_BIT:
            if(fixA.getFilterData().categoryBits == Mario.MARIO_HEAD_BIT)
                    ((InteractiveTitleObject) fixB.getUserData()).onHeadHit((CMario) fixA.getUserData());
                else
                    ((InteractiveTitleObject) fixA.getUserData()).onHeadHit((CMario) fixA.getUserData());
                         break;
-
 */
-           case Mario.ENEMY_BIT | Mario.ENEMY_BIT:
-               ((Enemy)fixA.getUserData()).reverseVelocity(true, false);
-               ((Enemy)fixB.getUserData()).reverseVelocity(true, false);
-               break;
-           case Mario.ITEM_BIT | Mario.OBJECT_BIT:
-               if(fixA.getFilterData().categoryBits == Mario.ITEM_BIT)
-                   ((Item)fixA.getUserData()).reverseVelocity(true, false);
-               else
-                   ((Item)fixB.getUserData()).reverseVelocity(true, false);
-               break;
-           case Mario.ITEM_BIT | Mario.MARIO_BIT:
-               if(fixA.getFilterData().categoryBits == Mario.ITEM_BIT)
-                   ((Item)fixA.getUserData()).use((CMario) fixB.getUserData());
-               else
-                   ((Item)fixB.getUserData()).use((CMario) fixA.getUserData());
-               break;
-       }
+            case Mario.ENEMY_BIT | Mario.ENEMY_BIT:
+                ((Enemy)fixA.getUserData()).reverseVelocity(true, false);
+                ((Enemy)fixB.getUserData()).reverseVelocity(true, false);
+                break;
+            case Mario.ITEM_BIT | Mario.OBJECT_BIT:
+                if(fixA.getFilterData().categoryBits == Mario.ITEM_BIT)
+                    ((Item)fixA.getUserData()).reverseVelocity(true, false);
+                else
+                    ((Item)fixB.getUserData()).reverseVelocity(true, false);
+                break;
+            case Mario.ITEM_BIT | Mario.MARIO_BIT:
+                if(fixA.getFilterData().categoryBits == Mario.ITEM_BIT)
+                    ((Item)fixA.getUserData()).use((CMario) fixB.getUserData());
+                else
+                    ((Item)fixB.getUserData()).use((CMario) fixA.getUserData());
+                break;
+        }
     }
 
 

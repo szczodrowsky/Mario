@@ -14,6 +14,7 @@ import com.mygdx.game.Mario;
 import com.mygdx.game.lv1.cos.Mario.Screens.PlayScreen;
 import com.mygdx.game.lv1.cos.Mario.Sprites.Brick;
 import com.mygdx.game.lv1.cos.Mario.Sprites.Coin;
+import com.mygdx.game.lv1.cos.Mario.Sprites.EndGame;
 import com.mygdx.game.lv1.cos.Mario.Sprites.Sugar;
 
 
@@ -64,6 +65,11 @@ public class B2WorldCreator {
 
             new Brick(screen, object);
         }
+        for (MapObject object : map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
+
+            new EndGame(screen, object);
+        }
+
         //donaty
         sugars = new Array<Sugar>();
         for (MapObject object : map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
