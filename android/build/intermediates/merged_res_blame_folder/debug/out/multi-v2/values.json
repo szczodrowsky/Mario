@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Programowanie\\Mario\\android\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "com.mygdx.game.android-mergeDebugResources-3:/values/values.xml",
             "map": [
                 {
                     "source": "C:\\Programowanie\\Mario\\android\\res\\values\\strings.xml",

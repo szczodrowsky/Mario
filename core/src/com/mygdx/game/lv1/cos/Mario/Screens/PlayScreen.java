@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -51,19 +52,20 @@ public class PlayScreen implements Screen {
     private Box2DDebugRenderer b2dr;
     private B2WorldCreator creator;
     //sprites
-    private CMario player;
-     private Array<Item> items;
-     private LinkedBlockingQueue<ItemDef> itemToSpawn;
-
+    public CMario player;
+    private Array<Item> items;
+    private LinkedBlockingQueue<ItemDef> itemToSpawn;
 
 
 
     public PlayScreen(Mario game) {
+
         atlas = new TextureAtlas("testowy.pack");
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(Mario.v_width / Mario.PPM, Mario.v_high / Mario.PPM, gamecam);
         gamePort.apply();
+
         hud = new Hud(game.batch);
         maploader = new TmxMapLoader();
         map = maploader.load("1-1.tmx");
@@ -73,19 +75,22 @@ public class PlayScreen implements Screen {
         b2dr = new Box2DDebugRenderer();
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Mario.PPM);
         creator = new B2WorldCreator(this);
+
         world.setContactListener(new WorldContactListener());
         items = new Array<Item>();
         itemToSpawn = new LinkedBlockingQueue<ItemDef>();
 
 
     }
-    public void spawnItem(ItemDef idef){
+
+    public void spawnItem(ItemDef idef) {
         itemToSpawn.add(idef);
     }
-    public void handleSpawningItems(){
-        if(!itemToSpawn.isEmpty()){
+
+    public void handleSpawningItems() {
+        if (!itemToSpawn.isEmpty()) {
             ItemDef idef = itemToSpawn.poll();
-            if(idef.type == Apple.class){
+            if (idef.type == Apple.class) {
                 items.add(new Apple(this, idef.position.x, idef.position.y));
             }
         }
@@ -94,6 +99,8 @@ public class PlayScreen implements Screen {
     public TextureAtlas getAtlas() {
         return atlas;
     }
+
+//Poruszanie sie po mapie
     public void handleInput(float dt) {
         if (player.currentState != CMario.State.DEAD) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.UP))
@@ -105,29 +112,31 @@ public class PlayScreen implements Screen {
         }
     }
 
-    public void update (float dt){
+    public void update(float dt) {
         handleInput(dt);
         handleSpawningItems();
-        world.step(1/60f,6,2);
+        world.step(1 / 60f, 6, 2);
         player.update(dt);
-        for (Enemy enemy: creator.getSugars())
+        for (Enemy enemy : creator.getSugars())
             enemy.update(dt);
-        for(Item item: items)
+        for (Item item : items)
             item.update(dt);
 
         hud.upadte(dt);
         gamecam.position.x = player.b2body.getPosition().x;
         gamecam.update();
-        renderer.setView(gamecam );
-        if(player.currentState !=CMario.State.DEAD){
-            gamecam.position.x=player.b2body.getPosition().x;
+        renderer.setView(gamecam);
+        if (player.currentState != CMario.State.DEAD) {
+            gamecam.position.x = player.b2body.getPosition().x;
         }
 
     }
-    public TiledMap getMap(){
+
+    public TiledMap getMap() {
         return map;
     }
-    public World getWorld(){
+
+    public World getWorld() {
         return world;
     }
 
@@ -140,27 +149,27 @@ public class PlayScreen implements Screen {
     public void render(float delta) {
         update(delta);
         //czyszczenie ekranu na czarno
-        Gdx.gl.glClearColor( 0, 0, 0, 1 );
-        Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         //render naszej mapy
         renderer.render();
         //render Box2D
-        b2dr.render(world,gamecam.combined);
-
+        b2dr.render(world, gamecam.combined);
+    // generowanie przedmiotów i przeciwników na miejscach wybranych w TiltedMap
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
-        for (Enemy enemy: creator.getSugars())
+        for (Enemy enemy : creator.getSugars())
             enemy.draw(game.batch);
-        for(Item item: items)
+        for (Item item : items)
             item.draw(game.batch);
         game.batch.end();
 
-      game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-      hud.stage.draw();
-
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
 
     }
+
 
     @Override
     public void resize(int width, int height) {
@@ -185,10 +194,10 @@ public class PlayScreen implements Screen {
     @Override
     public void dispose() {
         map.dispose();
-        renderer.dispose();
         world.dispose();
         b2dr.dispose();
         hud.dispose();
+        renderer.dispose();
 
 
     }

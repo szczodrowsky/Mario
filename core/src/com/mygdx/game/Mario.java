@@ -31,8 +31,8 @@ public class Mario extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		//setScreen(new Menu(this));
-		setScreen(new PlayScreen(this));
+		setScreen(new Menu(this));
+		//setScreen(new PlayScreen(this));
 	}
 
 	@Override

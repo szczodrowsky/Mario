@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Programowanie\\Mario\\android\\build\\intermediates\\merged_res\\debug\\values_values.arsc.flat",
+            "outputFile": "com.mygdx.game.android-merged_res-5:/values_values.arsc.flat",
             "map": [
                 {
                     "source": "C:\\Programowanie\\Mario\\android\\res\\values\\strings.xml",

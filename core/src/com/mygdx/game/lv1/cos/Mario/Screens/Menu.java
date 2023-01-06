@@ -38,7 +38,7 @@ public class Menu implements Screen {
         playButtonInactive = new Texture("play_button_inactive.png");
         exitButtonActive = new Texture("exit_button_active.png");
         exitButtonInactive = new Texture("exit_button_inactive.png");
-        logo = new Texture("logo.png");
+        logo = new Texture("menuBack.jpg");
 
 
 
@@ -55,6 +55,7 @@ public class Menu implements Screen {
         Gdx.gl.glClearColor( 0, 0, 0, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
         game.batch.begin();
+        game.batch.draw(logo,0,0,Mario.v_width,Mario.v_high);
 
 
         int x = Mario.v_width/2 - exbWidhth/2;
@@ -79,7 +80,7 @@ public class Menu implements Screen {
         }
 
         x = Mario.v_width/2 - logoW/2;
-        game.batch.draw(logo,x,logoY,logoH,logoW);
+
 
         game.batch.end();
 

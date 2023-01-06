@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
@@ -47,6 +49,7 @@ public class Sugar extends Enemy {
     }
 
 
+
     @Override
     protected void defineEnemy() {
         BodyDef bdef = new BodyDef();
@@ -83,7 +86,7 @@ public class Sugar extends Enemy {
     }
 
     @Override
-    public void hitOnHead() {
+    public void hitOnHead(CMario cmario) {
     setToDestroy = true;
         Hud.addScore(100);
     }
@@ -92,4 +95,6 @@ public class Sugar extends Enemy {
             super.draw(batch);
     }
 
-}
+    }
+
+

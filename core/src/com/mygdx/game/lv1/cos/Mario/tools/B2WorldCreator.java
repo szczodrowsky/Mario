@@ -29,6 +29,8 @@ public class B2WorldCreator {
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
         Body body;
+//Poniższe pętle rozpoznają obiekty z title mapy nastawione sa na wyszukiwanie prostokątów.
+
 
         //to jest podłoga
         for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
@@ -55,7 +57,7 @@ public class B2WorldCreator {
             fdef.filter.categoryBits = Mario.OBJECT_BIT;
             body.createFixture(fdef);
         }
-        // to beda monety/melko
+        // to beda jabłka/coiny
         for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
 
             new Coin(screen, object);

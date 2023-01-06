@@ -27,7 +27,6 @@ public class Coin extends InteractiveTitleObject{
 
     @Override
     public void onHeadHit(CMario mario) {
-        Gdx.app.log("Coin","Collision");
         if(object.getProperties().containsKey("apple")){
             screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x,body.getPosition().y+16/Mario.PPM), Apple.class));
         }

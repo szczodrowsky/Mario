@@ -16,7 +16,6 @@ public class Brick extends InteractiveTitleObject{
 
     @Override
     public void onHeadHit(CMario mario) {
-        Gdx.app.log("Brick","Collision");
         setCategoryFilter(Mario.DESTROYED_BIT);
         getCell().setTile(null);
         Hud.addScore(200);
